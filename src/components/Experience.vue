@@ -29,12 +29,12 @@
 <script setup>
 const experiences = [
     {
-        role: 'Junior Web Developer',
-        place: 'PT Intersolusi Teknologi Asia(BTS.id)',
-        date: 'July 2023 - January 2024',
-        description: `Develop fixed asset management system,start from developing an ERD and performing database normalization to create a well-structured database, slicing Figma designs using Vue.js to ensure a user- friendly interface, and building a REST API`,
-        tech: ['vue', 'express', 'tailwind', 'postgre'],
-        job : 'internship'
+        role: 'Desainer Grafis',
+        place: 'Smk Metland Cibitung',
+        date: '2024 - Present',
+        description: `Mendesain identitas visual dan aset digital (logo, banner, materi pemasaran), membuat UI mockup di Figma, memproduksi ilustrasi dan layout untuk materi cetak menggunakan Adobe Illustrator & InDesign, serta menyiapkan file siap-cetak sambil berkolaborasi dengan tim produk untuk konsistensi brand.`,
+        tech: ['figma', 'photoshop', 'illustrator', 'lightroom'],
+        job: 'internship'
     }
 ]
 </script>

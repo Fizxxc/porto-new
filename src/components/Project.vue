@@ -38,10 +38,10 @@
 </template>
 
 <script setup>
-import bq from '@/assets/img/projects/bouquet.png'
-import umkm from '@/assets/img/projects/umkmconnect.png'
-import lib from '@/assets/img/projects/libblion.png'
-import fm from '@/assets/img/projects/foodmate.png'
+import ps from '@/assets/img/projects/posterr.png'
+import ps3 from '@/assets/img/projects/posterr3.png'
+import ps2 from '@/assets/img/projects/posterr2.jpg'
+import ps4 from '@/assets/img/projects/1.png'
 
 const emits = defineEmits(['sendProject'])
 
@@ -53,53 +53,45 @@ const sendProject = (data)=>{
 
 const projects = [
     {
-        name: "snf bouquet",
+        name: "valentine day",
         year: 2025,
-        description: "Self-project, an e-commerce flower sales and can already carry out purchasing simulations",
+        description: "Self-project, a Valentine's Day poster collection application featuring romantic designs and interactive user experience",
         tech: [
-            'Vue',
-            'Express',
-            'Tailwind',
-            'PostgreSQL'
+            'Photoshop',
+            'Illustrator',
         ],
-        image: bq,
-        link: 'https://bouquet-fe.vercel.app/'
-    },
-    {
-        name: "Libblion",
-        year: 2025,
-        description: "Self-project, an online book lending application",
-        tech: [
-            'Vue',
-            'Laravel',
-            'Tailwind',
-            'MYSQL'
-        ],
-        image: lib,
+        image: ps,
         link: null
     },
     {
-        name: "Food Mate",
-        year: 2024,
-        description: "Self-project, a food recipe application from free API",
+        name: "Energy Drink",
+        year: 2025,
+        description: "Self-project, an energy drink ordering application",
         tech: [
-            'Vue',
-            'Tailwind',
+            'Photoshop',
         ],
-        image: fm,
-        link: 'https://food-mate-sigma.vercel.app/'
+        image: ps2,
+        link: null
     },
     {
-        name: "umkm connect",
-        year: 2024,
-        description: "Self project, an application for managing MSME businesses and can already carry out purchasing simulations",
+        name: "Geopelia striata Photography",
+        year: 2025,
+        description: "Self-project, desain fotografi burung Geopelia striata (perkutut), menampilkan keindahan dan detail dari burung perkutut dengan teknik fotografi yang estetik",
         tech: [
-            'Vue',
-            'Express',
-            'Tailwind',
-            'PostgreSQL'
+            'Sony a6400',
+            'Lightroom',
         ],
-        image: umkm,
+        image: ps4,
+        link: null
+    },
+    {
+        name: "Guerlain Parfume",
+        year: 2025,
+        description: "Self-project, desain branding dan kemasan untuk parfum Guerlain, menampilkan konsep visual, inspirasi aroma, dan materi promosi",
+        tech: [
+            'Photoshop',
+        ],
+        image: ps3,
         link: null
     },
 

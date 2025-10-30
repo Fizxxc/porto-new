@@ -30,6 +30,9 @@ import vueIcon from '@/assets/icons/vuedotjs.svg'
 import nuxtIcon from '@/assets/icons/nuxt.svg'
 import tailwindIcon from '@/assets/icons/tailwindcss.svg'
 import nodeIcon from '@/assets/icons/nodedotjs.svg'
+import alightIcon from '@/assets/icons/am.svg'
+import photoshopIcon from '@/assets/icons/ps.svg'
+import illustratorIcon from '@/assets/icons/ai.svg'
 import expressIcon from '@/assets/icons/express.svg'
 import phpIcon from '@/assets/icons/php.svg'
 import laravelIcon from '@/assets/icons/laravel.svg'
@@ -45,17 +48,17 @@ const originalSkills = [
     { name: 'css', image: cssIcon },
     { name: 'javascript', image: jsIcon },
     { name: 'vue', image: vueIcon },
-    { name: 'nuxt', image: nuxtIcon },
+    { name: 'photoshop', image: photoshopIcon },
     { name: 'tailwind', image: tailwindIcon },
-    { name: 'node', image: nodeIcon },
-    { name: 'express', image: expressIcon },
-    { name: 'php', image: phpIcon },
-    { name: 'laravel', image: laravelIcon },
-    { name: 'postgresql', image: postgresqlIcon },
-    { name: 'mysql', image: mysqlIcon },
-    { name: 'git', image: gitIcon },
-    { name: 'github', image: githubIcon },
-    { name: 'gitlab', image: gitlabIcon }
+    { name: 'illustrator', image: illustratorIcon },
+    { name: 'alight motion', image: alightIcon },
+    // { name: 'php', image: phpIcon },
+    // { name: 'laravel', image: laravelIcon },
+    // { name: 'postgresql', image: postgresqlIcon },
+    // { name: 'mysql', image: mysqlIcon },
+    // { name: 'git', image: gitIcon },
+    // { name: 'github', image: githubIcon },
+    // { name: 'gitlab', image: gitlabIcon }
 ]
 
 const skillSet = ref([...originalSkills])

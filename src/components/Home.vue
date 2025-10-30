@@ -2,8 +2,8 @@
     <section class="px-4 lg:px-16 min-h-screen">
         <div class="min-h-screen grid">
             <div class="flex flex-col gap-y-4 box-border py-24">
-                <h1 class="text-7xl lg:text-9xl split">Rahman<br>Nurhayadi</h1>
-                <h2 class="text-3xl bg-soft-ivory w-max rounded-full py-2 px-4 badge">Web Developer</h2>
+                <h1 class="text-7xl lg:text-9xl split">Hafiz<br>Al Fariz</h1>
+                <h2 class="text-3xl bg-soft-ivory w-max rounded-full py-2 px-4 badge">Graphic Designer</h2>
             </div>
             <div class="flex flex-col justify-end">
                 <h3 class="text-4xl text-end lg:text-5xl split">
