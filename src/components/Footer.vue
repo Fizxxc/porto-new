@@ -3,33 +3,37 @@
     <Bg :hue="0" :saturation="0" :lightness="100" class="pointer-events-none absolute inset-0 opacity-10" />
 
     <div class="section-shell relative z-10 flex min-h-svh flex-col justify-center gap-10 pb-28 md:pb-16">
-      <div class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
-        <div class="glass-panel rounded-[2rem] p-5 sm:p-8">
+      <div class="grid gap-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
+        <section class="rounded-[2rem] border border-white/12 bg-white/8 p-5 shadow-xl backdrop-blur-md sm:p-8">
           <p class="section-kicker text-light-gray/60">Get in touch</p>
           <h1 class="fluid-title pt-4 font-semibold split-f safe-text">Contact.</h1>
-          <p class="max-w-xl pt-5 leading-8 text-light-gray/75 safe-text">
-            Open for school events, visual operation, documentation, VJ design, motion graphics, and graphic design projects.
+          <p class="max-w-xl pt-5 text-base leading-8 text-light-gray/75 sm:text-lg safe-text">
+            Terbuka untuk kebutuhan event sekolah, visual operation, dokumentasi, VJ design, motion graphics, dan graphic design.
           </p>
 
-          <div class="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+          <div class="mt-7 grid gap-3">
             <a v-for="contact in contactDetails" :key="contact.label" :href="contact.url" target="_blank" rel="noopener noreferrer"
-              class="group flex min-w-0 items-center gap-4 rounded-2xl border border-light-gray/15 bg-white/5 p-4 transition hover:-translate-y-1 hover:bg-white/10">
-              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-xl text-soft-ivory transition group-hover:bg-soft-ivory group-hover:text-primary">
+              class="group flex min-w-0 items-center gap-4 rounded-2xl border border-light-gray/12 bg-primary/30 p-4 transition hover:-translate-y-1 hover:border-soft-ivory/40 hover:bg-white/10">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-soft-ivory text-xl text-primary transition group-hover:bg-white">
                 <i :class="contact.icon"></i>
               </span>
-              <span class="min-w-0">
+              <span class="min-w-0 flex-1">
                 <span class="block text-xs uppercase tracking-[0.2em] text-light-gray/45 safe-text">{{ contact.label }}</span>
                 <span class="block pt-1 font-semibold leading-snug text-light-gray safe-text">{{ contact.value }}</span>
               </span>
+              <i class="pi pi-arrow-up-right hidden shrink-0 text-light-gray/35 transition group-hover:text-light-gray sm:block"></i>
             </a>
           </div>
-        </div>
+        </section>
 
-        <form @submit.prevent="sendMessage" class="glass-panel rounded-[2rem] p-5 sm:p-8">
+        <form @submit.prevent="sendMessage" class="rounded-[2rem] border border-white/12 bg-white/8 p-5 shadow-xl backdrop-blur-md sm:p-8">
           <div class="flex h-full flex-col gap-5">
-            <div>
-              <p class="text-sm uppercase tracking-[0.25em] text-light-gray/45">Quick Message</p>
-              <h2 class="pt-3 text-2xl sm:text-3xl font-semibold safe-text">Send a message via email</h2>
+            <div class="rounded-[1.5rem] border border-light-gray/10 bg-primary/25 p-5">
+              <p class="text-sm uppercase tracking-[0.25em] text-light-gray/45 safe-text">Quick Message</p>
+              <h2 class="pt-3 text-2xl font-semibold sm:text-3xl safe-text">Send a message via email</h2>
+              <p class="pt-3 text-sm leading-6 text-light-gray/58 safe-text">
+                Isi form ini akan otomatis masuk ke email supaya lebih gampang dikirim.
+              </p>
             </div>
 
             <div class="grid gap-4 sm:grid-cols-2">
@@ -58,8 +62,8 @@
       </div>
 
       <div class="flex flex-col gap-3 text-center text-sm text-light-gray/50 sm:flex-row sm:items-center sm:justify-between sm:text-left">
-        <p>© {{ new Date().getFullYear() }} FizzxVerss. All rights reserved.</p>
-        <p>Hafiz Al Fariz — Visual Communication Design</p>
+        <p class="safe-text">© {{ new Date().getFullYear() }} FizzxVerss. All rights reserved.</p>
+        <p class="safe-text">Hafiz Al Fariz — Visual Communication Design</p>
       </div>
     </div>
   </footer>
@@ -118,8 +122,9 @@ onMounted(() => {
 <style scoped>
 .contact-input {
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  min-width: 0;
+  background-color: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: #e0e0e0;
   padding: 0.9rem 1rem;
   border-radius: 1rem;
@@ -128,10 +133,10 @@ onMounted(() => {
   transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 .contact-input::placeholder {
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.36);
 }
 .contact-input:focus {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.08);
   border-color: rgba(234, 228, 213, 0.75);
   box-shadow: 0 0 0 4px rgba(234, 228, 213, 0.12);
 }
