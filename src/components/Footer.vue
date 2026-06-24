@@ -1,19 +1,27 @@
 <template>
-  <footer>
-    <div
-      class="bg-primary min-h-screen px-6 py-16 flex flex-col justify-center items-center relative overflow-hidden"
-      id="f-wrapper"
-    >
-      <Bg :hue="0" :saturation="0" :lightness="100" class="opacity-10 absolute inset-0" />
+  <footer id="contact" class="bg-primary text-light-gray min-h-screen px-6 py-16 flex flex-col justify-center items-center relative overflow-hidden">
+    <Bg :hue="0" :saturation="0" :lightness="100" class="opacity-10 absolute inset-0" />
 
-      <h1 class="text-5xl text-center text-light-gray font-semibold mb-10 split-f">
-        Contact<span class="text-accent">.</span>
-      </h1>
+    <div class="relative z-10 w-full max-w-5xl grid lg:grid-cols-[1fr_1.1fr] gap-8 items-start">
+      <div class="space-y-6">
+        <p class="uppercase tracking-[0.4em] text-sm text-light-gray/60">Get in touch</p>
+        <h1 class="text-5xl lg:text-7xl font-semibold split-f">Contact.</h1>
+        <p class="leading-8 text-light-gray/75">
+          Open for school events, visual operation, documentation, VJ design, motion graphics, and graphic design projects.
+        </p>
 
-      <!-- Contact Form -->
+        <div class="grid gap-4">
+          <a v-for="contact in contactDetails" :key="contact.label" :href="contact.url" target="_blank"
+             class="rounded-2xl border border-light-gray/20 p-4 bg-white/5 hover:bg-white/10 transition">
+            <p class="text-sm text-light-gray/50">{{ contact.label }}</p>
+            <h2 class="pt-1 font-semibold">{{ contact.value }}</h2>
+          </a>
+        </div>
+      </div>
+
       <form
         @submit.prevent="sendMessage"
-        class="w-full max-w-md bg-secondary/20 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-light-gray/20"
+        class="w-full bg-white/5 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-light-gray/20"
       >
         <div class="flex flex-col space-y-5">
           <input
@@ -39,34 +47,18 @@
 
           <button
             type="submit"
-            class="mt-4 w-full border border-accent text-accent py-2 rounded-md hover:bg-accent hover:text-white transition-all duration-300 font-medium"
+            class="mt-4 w-full border border-accent text-accent py-3 rounded-xl hover:bg-accent hover:text-white transition-all duration-300 font-medium"
           >
-            Send
+            Send via Email
           </button>
         </div>
       </form>
-
-      <!-- Floating Alert -->
-      <transition name="fade">
-        <div
-          v-if="alert.visible"
-          :class="[
-            'fixed bottom-6 right-6 px-5 py-3 rounded-xl text-white shadow-lg backdrop-blur-md transition-all',
-            alert.type === 'success'
-              ? 'bg-green-600/80'
-              : 'bg-red-600/80'
-          ]"
-        >
-          {{ alert.message }}
-        </div>
-      </transition>
     </div>
-  </footer>
 
-  <!-- Footer -->
-    <footer class="absolute bottom-4 text-sm text-gray-500 text-center w-full">
+    <p class="relative z-10 mt-12 text-sm text-light-gray/50 text-center">
       © {{ new Date().getFullYear() }} FizzxVerss. All rights reserved.
-    </footer>
+    </p>
+  </footer>
 </template>
 
 <script setup>
@@ -75,52 +67,27 @@ import { SplitText } from 'gsap/SplitText';
 import gsap from 'gsap';
 import Bg from './util/Bg.vue';
 
-// ==== KONFIG TELEGRAM ====
-const BOT_TOKEN = "6439522031:AAGphEnYCdsDVZQYt-a6mMZmV0zqZ2g6RC8";
-const CHAT_ID = 6450551010;
+const contactDetails = [
+  { label: 'Phone / WhatsApp', value: '+62 857-7656-8948', url: 'https://wa.me/6285776568948' },
+  { label: 'Email', value: 'fizzx404@gmail.com', url: 'mailto:fizzx404@gmail.com' },
+  { label: 'Instagram', value: '@fizzx.docx', url: 'https://instagram.com/fizzx.docx' },
+  { label: 'Address', value: 'Griyayasa Blok B1/19, Cibitung, Bekasi', url: 'https://www.google.com/maps/search/?api=1&query=Griyayasa%20Blok%20B1%2F19%20Cibitung%20Bekasi' },
+]
 
-// ==== STATE ====
 const name = ref('');
 const email = ref('');
 const message = ref('');
-const alert = ref({ visible: false, message: '', type: 'success' });
 
-// ==== ALERT ====
-function showAlert(msg, type = 'success') {
-  alert.value = { visible: true, message: msg, type };
-  setTimeout(() => (alert.value.visible = false), 3000);
-}
+const sendMessage = () => {
+  const subject = encodeURIComponent(`Portfolio message from ${name.value}`);
+  const body = encodeURIComponent(`Name: ${name.value}\nEmail: ${email.value}\n\n${message.value}`);
+  window.location.href = `mailto:fizzx404@gmail.com?subject=${subject}&body=${body}`;
 
-// ==== KIRIM KE TELEGRAM ====
-const sendMessage = async () => {
-  if (!name.value.trim() || !email.value.trim() || !message.value.trim()) return;
-
-  const text = `📩 *Pesan Baru dari Website Portfolio*\n\n👤 Nama: ${name.value}\n📧 Email: ${email.value}\n💬 Pesan:\n${message.value}`;
-  try {
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text,
-        parse_mode: 'Markdown'
-      })
-    });
-
-    if (res.ok) {
-      showAlert('Pesan berhasil dikirim ke Telegram 🚀', 'success');
-      name.value = '';
-      email.value = '';
-      message.value = '';
-    } else {
-      throw new Error('Gagal mengirim');
-    }
-  } catch {
-    showAlert('Gagal mengirim pesan. Coba lagi nanti.', 'error');
-  }
+  name.value = '';
+  email.value = '';
+  message.value = '';
 };
 
-// ==== ANIMASI GSAP ====
 onMounted(() => {
   const split = SplitText.create('.split-f', {
     type: 'words',
@@ -129,7 +96,7 @@ onMounted(() => {
 
   gsap.from(split.words, {
     scrollTrigger: {
-      trigger: '#f-wrapper',
+      trigger: '#contact',
       start: 'top bottom',
     },
     opacity: 0,
@@ -149,15 +116,21 @@ onMounted(() => {
   color: #e0e0e0;
 }
 .text-accent {
-  color: #a855f7; /* ungu neon */
+  color: #a855f7;
+}
+.border-accent {
+  border-color: #a855f7;
+}
+.hover\:bg-accent:hover {
+  background-color: #a855f7;
 }
 .contact-input {
   width: 100%;
   background-color: rgba(168, 85, 247, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   color: #e0e0e0;
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
   font-size: 1rem;
   outline: none;
   transition: all 0.3s;
@@ -168,15 +141,5 @@ onMounted(() => {
 .contact-input:focus {
   border-color: #a855f7;
   box-shadow: 0 0 10px #a855f755;
-}
-
-/* Fade animation for alert */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

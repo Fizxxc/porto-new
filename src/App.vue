@@ -9,7 +9,7 @@
         <Skill id="skill"/>
         <Project id="projects" @send-project="getProject"/>
         <Experience id="exp"/>
-        <Sertified />
+        <Sertified id="certificates" />
         <Footer />
       </div>
     </main>

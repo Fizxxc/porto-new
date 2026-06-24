@@ -2,12 +2,15 @@
     <section class="px-4 lg:px-16 min-h-screen">
         <div class="min-h-screen grid">
             <div class="flex flex-col gap-y-4 box-border py-24">
+                <p class="text-lg lg:text-2xl split text-warm-gray">Portfolio of</p>
                 <h1 class="text-7xl lg:text-9xl split">Hafiz<br>Al Fariz</h1>
-                <h2 class="text-3xl bg-soft-ivory w-max rounded-full py-2 px-4 badge">Graphic Designer</h2>
+                <h2 class="text-xl lg:text-3xl bg-soft-ivory w-max rounded-full py-2 px-4 badge">
+                    VCD Student • Motion Graphic • Visual Operator
+                </h2>
             </div>
             <div class="flex flex-col justify-end">
                 <h3 class="text-4xl text-end lg:text-5xl split">
-                    Turning ideas <br> into interactive digital products.
+                    Turning simple shapes <br> into meaningful visual stories.
                 </h3>
                 <Contact
                     :class-plus="'flex justify-center items-center h-12 w-12 rounded-full bg-soft-ivory hover:bg-primary hover:text-soft-ivory transition-color duration-500'" />

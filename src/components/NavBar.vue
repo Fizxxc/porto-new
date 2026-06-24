@@ -22,6 +22,7 @@ const menus = [
     { name: 'Skill', path: 'skill' },
     { name: 'Projects', path: 'projects' },
     { name: 'Experience', path: 'exp' },
+    { name: 'Sertifikat', path: 'certificates' },
 ]
 
 const activeSection = ref('landing')
