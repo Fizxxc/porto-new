@@ -1,28 +1,31 @@
 <template>
     <Transition name="modal">
-        <div class="h-screen w-screen flex justify-center items-center fixed z-50 px-4 box-border backdrop-blur-sm"
+        <div class="fixed inset-0 z-50 flex h-dvh w-full items-center justify-center overflow-y-auto px-4 py-6 box-border backdrop-blur-sm"
             @click="closeModal" v-if="isActive">
-            <div
-                class="bg-white/50 backdrop-blur-md min-h-80 p-4 sm:p-8 shadow-lg rounded-md flex flex-col gap-y-4 sm:w-3/4 md:w-2/3 lg:w-1/2">
-                <h1 class="text-6xl capitalize font-bold">
-                    {{ data.name }}
-                </h1>
-                <div class="flex-1 flex flex-col justify-center gap-y-4">
-                    <p class="text-lg">{{ data.description }}</p>
-                    <div class="flex flex-wrap gap-4">
-                        <span class="block bg-primary text-soft-ivory text-center w-28 rounded-full p-1 text-sm"
-                            v-for="t in data.tech">
+            <div @click.stop
+                class="max-h-[90dvh] w-full max-w-3xl overflow-y-auto rounded-[2rem] border border-white/40 bg-white/75 p-5 shadow-2xl backdrop-blur-md sm:p-8">
+                <div class="flex items-start justify-between gap-4">
+                    <h1 class="fluid-heading capitalize font-bold safe-text">
+                        {{ data.name }}
+                    </h1>
+                    <button type="button" class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-soft-ivory" @click="closeModal" aria-label="Close modal">
+                        <i class="pi pi-times"></i>
+                    </button>
+                </div>
+                <div class="flex-1 flex flex-col justify-center gap-y-4 pt-5">
+                    <p class="text-base sm:text-lg leading-8 safe-text">{{ data.description }}</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="block bg-primary text-soft-ivory text-center rounded-full px-4 py-1 text-sm safe-text"
+                            v-for="t in data.tech" :key="t">
                             {{ t }}
                         </span>
                     </div>
-                    <div class="flex flex-row gap-x-4 justify-end">
+                    <div class="flex flex-row flex-wrap gap-4 justify-end">
                         <p class="bg-yellow-400 p-2 w-max rounded-full border px-4">{{ data.year }}</p>
-                        <button class="h-10 w-10 shrink-0" v-if="data.link">
-                            <a :href="data.link" target="_blank"
-                                class="bg-primary text-soft-ivory hover:bg-red-800 transition-color duration-500 h-full w-full rounded-full flex justify-center items-center">
-                                <i class="pi pi-arrow-up-right"></i>
-                            </a>
-                        </button>
+                        <a v-if="data.link" :href="data.link" target="_blank" rel="noopener noreferrer"
+                            class="bg-primary text-soft-ivory hover:bg-red-800 transition-colors duration-500 h-10 w-10 rounded-full flex justify-center items-center">
+                            <i class="pi pi-arrow-up-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -31,9 +34,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUpdated, ref, watch } from 'vue';
-
-const props = defineProps({
+defineProps({
     data: {
         default: null
     },
@@ -47,7 +48,6 @@ const closeModal = () => {
 </script>
 
 <style scoped>
-
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.5s ease;

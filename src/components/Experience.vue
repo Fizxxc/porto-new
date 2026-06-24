@@ -1,31 +1,32 @@
 <template>
-    <section class="px-4 lg:px-16 py-10 lg:py-24 min-h-screen">
+    <section class="section-shell min-h-svh">
         <div class="flex flex-col gap-y-10">
             <div class="flex flex-col gap-y-3">
-                <p class="uppercase tracking-[0.4em] text-sm text-warm-gray">From CV</p>
-                <h1 class="text-5xl lg:text-8xl">Experience</h1>
+                <p class="section-kicker text-warm-gray">From CV</p>
+                <h1 class="fluid-title safe-text">Experience</h1>
             </div>
 
-            <div class="relative grid gap-6">
-                <div v-for="exp in experiences" :key="`${exp.date}-${exp.role}`" class="grid lg:grid-cols-[220px_1fr] gap-4 lg:gap-8">
-                    <div class="lg:text-right">
-                        <p class="text-sm uppercase tracking-widest text-warm-gray">{{ exp.date }}</p>
-                        <h2 class="text-2xl font-semibold pt-1">{{ exp.role }}</h2>
+            <div class="relative grid gap-5 lg:gap-6">
+                <article v-for="(exp, index) in experiences" :key="`${exp.date}-${exp.role}`"
+                    class="grid gap-4 rounded-[2rem] border border-primary/10 bg-white/70 p-5 shadow-sm md:grid-cols-[12rem_1fr] lg:grid-cols-[15rem_1fr] lg:p-6">
+                    <div class="min-w-0 md:text-right">
+                        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-soft-ivory text-sm font-semibold md:ml-auto">
+                            {{ String(index + 1).padStart(2, '0') }}
+                        </span>
+                        <p class="pt-4 text-xs sm:text-sm uppercase tracking-widest text-warm-gray safe-text">{{ exp.date }}</p>
+                        <h2 class="text-xl sm:text-2xl font-semibold pt-1 safe-text">{{ exp.role }}</h2>
                     </div>
 
-                    <div class="relative rounded-3xl bg-white/70 border border-primary/10 p-6 shadow-sm">
-                        <div class="hidden lg:block absolute -left-[30px] top-8 h-4 w-4 rounded-full bg-primary"></div>
-                        <div class="hidden lg:block absolute -left-[23px] top-12 h-full w-[2px] bg-primary/20"></div>
-
-                        <p class="font-semibold text-primary/80">{{ exp.place }}</p>
-                        <p class="pt-4 leading-7 text-justify">{{ exp.description }}</p>
+                    <div class="relative min-w-0 md:border-l md:border-primary/10 md:pl-6">
+                        <p class="font-semibold text-primary/80 safe-text">{{ exp.place }}</p>
+                        <p class="pt-4 leading-7 text-justify safe-text">{{ exp.description }}</p>
                         <div class="flex flex-wrap gap-2 pt-5">
-                            <span v-for="tag in exp.tags" :key="tag" class="px-4 py-1 bg-soft-ivory rounded-full text-sm">
+                            <span v-for="tag in exp.tags" :key="tag" class="px-4 py-1 bg-soft-ivory rounded-full text-sm safe-text">
                                 {{ tag }}
                             </span>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>

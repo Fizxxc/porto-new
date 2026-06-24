@@ -1,14 +1,14 @@
 <template>
-    <ul class="inline-flex gap-x-6 justify-end py-4 text-2xl">
-        <li v-for="contact in contacts" :key="contact.url"
-            class="cursor-pointer hover:text-red-600 transition-colors duration-300 text-focus-in" :class="classPlus">
-            <a :href="contact.url" target="_blank" :aria-label="contact.label">
+    <ul class="flex flex-wrap gap-3 sm:gap-4 justify-start sm:justify-end py-2 text-xl sm:text-2xl">
+        <li v-for="contact in contacts" :key="contact.url" class="text-focus-in">
+            <a :href="contact.url" target="_blank" rel="noopener noreferrer" :aria-label="contact.label"
+                class="group cursor-pointer" :class="classPlus">
                 <i :class="contact.icon" />
+                <span class="sr-only">{{ contact.label }}</span>
             </a>
         </li>
     </ul>
 </template>
-
 
 <script setup>
 defineProps({

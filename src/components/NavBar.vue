@@ -1,10 +1,10 @@
 <template>
     <nav ref="menuWrapper"
-        class="z-40 left-1/2 -translate-x-1/2 fixed shadow-sm p-3 top-2 max-lg:top-[90%] rounded-full bg-white/10 backdrop-blur-lg w-full overflow-scroll scroll-hidden max-md:w-[10%] lg:w-max max-lg:w-4/5 max-sm:w-80">
-        <ul ref="menuList" class="inline-flex w-full gap-x-4">
+        class="fixed z-40 left-1/2 -translate-x-1/2 bottom-4 md:bottom-auto md:top-4 w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] md:w-max max-w-[44rem] overflow-x-auto scroll-hidden rounded-full border border-white/30 bg-white/70 p-2 shadow-lg backdrop-blur-xl">
+        <ul ref="menuList" class="flex min-w-max items-center gap-2">
             <li v-for="menu in menus" :key="menu.path" :ref="el => (menuRefs[menu.path] = el)"
-                class="w-28 rounded-full shrink-0 text-center p-2 transition-colors duration-300 cursor-pointer" :class="{
-                    'bg-primary text-white': activeSection === menu.path,
+                class="shrink-0 rounded-full px-4 py-2 text-center text-sm sm:text-base transition-colors duration-300 cursor-pointer select-none" :class="{
+                    'bg-primary text-white shadow-md': activeSection === menu.path,
                     'hover:bg-primary hover:text-soft-ivory': activeSection !== menu.path
                 }" @click="jumpToSection(menu.path)">
                 {{ menu.name }}
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, onBeforeUnmount } from 'vue'
 
 const menus = [
     { name: 'Home', path: 'landing' },
@@ -27,22 +27,19 @@ const menus = [
 
 const activeSection = ref('landing')
 const emits = defineEmits(['jumpToSection'])
+let observer = null
 
 const jumpToSection = (path) => {
     const section = document.getElementById(path)
     if (section) {
-        const offset = 80
-        const top = section.getBoundingClientRect().top + window.pageYOffset - offset
-        window.scrollTo({ top, behavior: 'smooth' })
         emits('jumpToSection', path)
     }
 }
 
-
 const menuRefs = {}
 
 onMounted(() => {
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
         (entries) => {
             const visible = entries
                 .filter((entry) => entry.isIntersecting)
@@ -54,7 +51,8 @@ onMounted(() => {
         },
         {
             root: null,
-            threshold: 0.05
+            rootMargin: '-25% 0px -55% 0px',
+            threshold: [0.08, 0.2, 0.35]
         }
     )
 
@@ -66,9 +64,13 @@ onMounted(() => {
     })
 })
 
+onBeforeUnmount(() => {
+    if (observer) observer.disconnect()
+})
+
 watch(activeSection, (newSection) => {
     const el = menuRefs[newSection]
-    if (el && window.innerWidth < 768) {
+    if (el) {
         el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
     }
 })

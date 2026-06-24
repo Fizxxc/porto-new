@@ -64,11 +64,15 @@ const handleJumpToSection = (sectionId) => {
 }
 
 onMounted(() => {
-  scrollSmoother = ScrollSmoother.create({
-    wrapper: '#wrapper',
-    content: '#content',
-    smooth: 1,
-    effects: true,
-  });
+  const canUseSmoothScroll = window.matchMedia('(min-width: 768px)').matches;
+
+  if (canUseSmoothScroll) {
+    scrollSmoother = ScrollSmoother.create({
+      wrapper: '#wrapper',
+      content: '#content',
+      smooth: 1,
+      effects: true,
+    });
+  }
 });
 </script>

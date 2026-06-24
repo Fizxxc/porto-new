@@ -1,42 +1,42 @@
 <template>
-  <section class="p-4 lg:px-16 py-10 lg:py-24 min-h-screen">
-    <div class="flex flex-col gap-y-10 gap-x-20 py-2 md:flex-row lg:justify-between" id="about-wrapper">
-      <div class="flex flex-col gap-y-8 lg:w-1/2">
+  <section class="section-shell min-h-svh">
+    <div class="grid gap-10 xl:grid-cols-[1.05fr_0.95fr] xl:items-center" id="about-wrapper">
+      <div class="flex flex-col gap-y-7">
         <div class="space-y-4">
-          <p class="uppercase tracking-[0.4em] text-sm text-warm-gray">About Me</p>
-          <h1 class="text-5xl w-full py-2 lg:text-8xl self-center">Visual Communication Design Student</h1>
-          <p class="lg:indent-4 text-justify leading-8">
+          <p class="section-kicker text-warm-gray">About Me</p>
+          <h1 class="fluid-title max-w-5xl py-2 safe-text">Visual Communication Design Student</h1>
+          <p class="max-w-3xl text-base sm:text-lg leading-8 text-justify safe-text">
             I am a Visual Communication Design (VCD) student at Metland Vocational School with a strong interest in
             <span class="font-bold">motion graphics, graphic design, VJ design, and sound operation</span>. I enjoy
             transforming simple shapes, such as boxes and circles, into engaging and meaningful animations.
           </p>
-          <p class="text-justify leading-8">
+          <p class="max-w-3xl text-base sm:text-lg leading-8 text-justify safe-text">
             I am adaptable, enjoy challenges, and always strive to deliver high-quality results through both independent
             work and effective teamwork.
           </p>
         </div>
 
-        <div class="grid sm:grid-cols-2 gap-4">
-          <div v-for="detail in personalDetails" :key="detail.label" class="rounded-2xl border border-primary/10 bg-white/60 p-5">
-            <p class="text-sm uppercase tracking-widest text-warm-gray">{{ detail.label }}</p>
-            <h3 class="pt-2 font-semibold text-lg">{{ detail.value }}</h3>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div v-for="detail in personalDetails" :key="detail.label" class="rounded-3xl border border-primary/10 bg-white/70 p-5 shadow-sm">
+            <p class="text-xs sm:text-sm uppercase tracking-widest text-warm-gray safe-text">{{ detail.label }}</p>
+            <h3 class="pt-2 font-semibold text-base sm:text-lg safe-text">{{ detail.value }}</h3>
           </div>
         </div>
 
-        <div class="rounded-2xl bg-primary text-soft-ivory p-6">
-          <h2 class="text-2xl font-semibold mb-4">Education</h2>
+        <div class="rounded-[2rem] bg-primary text-soft-ivory p-6 sm:p-8 shadow-xl">
+          <h2 class="text-2xl sm:text-3xl font-semibold mb-5">Education</h2>
           <div class="space-y-5">
             <div v-for="edu in education" :key="edu.period" class="border-l border-soft-ivory/40 pl-4">
-              <p class="text-sm text-soft-ivory/70">{{ edu.period }}</p>
-              <h3 class="font-semibold text-lg">{{ edu.school }}</h3>
-              <p class="text-soft-ivory/80">{{ edu.detail }}</p>
+              <p class="text-sm text-soft-ivory/70 safe-text">{{ edu.period }}</p>
+              <h3 class="font-semibold text-lg safe-text">{{ edu.school }}</h3>
+              <p class="text-soft-ivory/80 safe-text">{{ edu.detail }}</p>
             </div>
           </div>
         </div>
       </div>
 
       <div
-        class="h-80 w-full overflow-hidden border border-primary relative group md:w-80 lg:w-1/2 lg:h-[620px] md:shrink-0 blob"
+        class="h-[22rem] sm:h-[30rem] xl:h-[40rem] w-full overflow-hidden border border-primary/15 relative group shadow-2xl blob bg-white"
         id="img-wrapper">
         <img src="@/assets/img/me.jpg" alt="Hafiz Al Fariz profile" class="w-full h-full object-cover object-top" />
       </div>
@@ -78,13 +78,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 onMounted(() => {
   const skewSetter = gsap.quickTo('#img-wrapper', 'skewY');
-  const clamp = gsap.utils.clamp(-10, 10);
+  const clamp = gsap.utils.clamp(-8, 8);
 
   ScrollTrigger.create({
     trigger: '#img-wrapper',
     onUpdate: (self) => {
       const velocity = self.getVelocity();
-      skewSetter(clamp(velocity / -200));
+      skewSetter(clamp(velocity / -260));
     },
   });
 });
@@ -93,6 +93,13 @@ onMounted(() => {
 <style scoped>
 .blob {
   animation: blobMorph 8s ease-in-out infinite;
+}
+
+@media (max-width: 767px) {
+  .blob {
+    border-radius: 2rem !important;
+    animation: none;
+  }
 }
 
 @keyframes blobMorph {

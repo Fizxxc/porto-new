@@ -12,6 +12,89 @@
     --color-warm-gray: #B6B09F;
 }
 
+html {
+    scroll-behavior: smooth;
+    background: #F2F2F2;
+}
+
+html,
+body,
+#app {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+img,
+video,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+button,
+a,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.safe-text {
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.section-shell {
+    width: min(100%, 1440px);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 4rem);
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.section-kicker {
+    text-transform: uppercase;
+    letter-spacing: clamp(0.18em, 0.8vw, 0.4em);
+    font-size: clamp(0.75rem, 1.6vw, 0.875rem);
+}
+
+.fluid-title {
+    font-size: clamp(2.65rem, 11vw, 7.25rem);
+    line-height: 0.9;
+    letter-spacing: -0.065em;
+}
+
+.fluid-heading {
+    font-size: clamp(2rem, 6.5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.055em;
+}
+
+.fluid-subtitle {
+    font-size: clamp(1.25rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.045em;
+}
+
+.glass-panel {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045));
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(18px);
+}
+
+@media (max-width: 767px) {
+    .section-shell {
+        padding-block: 4.5rem;
+    }
+}
+
 @utility text-focus-in {
     -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
@@ -32,8 +115,6 @@
 @utility htb{
     writing-mode: horizontal-tb;
 }
-
-
 
 @-webkit-keyframes text-focus-in {
     0% {

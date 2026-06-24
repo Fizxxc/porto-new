@@ -1,19 +1,20 @@
 <template>
-    <section class="px-4 lg:px-16 min-h-screen">
-        <div class="min-h-screen grid">
-            <div class="flex flex-col gap-y-4 box-border py-24">
-                <p class="text-lg lg:text-2xl split text-warm-gray">Portfolio of</p>
-                <h1 class="text-7xl lg:text-9xl split">Hafiz<br>Al Fariz</h1>
-                <h2 class="text-xl lg:text-3xl bg-soft-ivory w-max rounded-full py-2 px-4 badge">
+    <section class="section-shell min-h-svh flex items-stretch pt-24 md:pt-28 pb-28 md:pb-16">
+        <div class="min-h-[calc(100svh-9rem)] w-full grid content-between gap-12">
+            <div class="flex max-w-6xl flex-col gap-y-5 box-border">
+                <p class="text-base sm:text-lg lg:text-2xl split text-warm-gray safe-text">Portfolio of</p>
+                <h1 class="fluid-title split safe-text">Hafiz<br>Al Fariz</h1>
+                <h2 class="badge w-fit max-w-full rounded-full bg-soft-ivory px-4 py-2 text-sm sm:text-base lg:text-2xl leading-snug safe-text">
                     VCD Student • Motion Graphic • Visual Operator
                 </h2>
             </div>
-            <div class="flex flex-col justify-end">
-                <h3 class="text-4xl text-end lg:text-5xl split">
-                    Turning simple shapes <br> into meaningful visual stories.
+
+            <div class="flex flex-col items-stretch gap-5 sm:items-end">
+                <h3 class="fluid-subtitle split max-w-4xl text-left sm:text-end safe-text">
+                    Turning simple shapes <br class="hidden sm:block"> into meaningful visual stories.
                 </h3>
                 <Contact
-                    :class-plus="'flex justify-center items-center h-12 w-12 rounded-full bg-soft-ivory hover:bg-primary hover:text-soft-ivory transition-color duration-500'" />
+                    :class-plus="'flex justify-center items-center h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-soft-ivory hover:bg-primary hover:text-soft-ivory transition-colors duration-500'" />
             </div>
         </div>
     </section>
@@ -32,15 +33,17 @@ onMounted(() => {
     })
 
     gsap.from('.badge', {
-        x: -100,
-        opacity: 0,
-        duration: 1
-    })
-    gsap.from(split.lines, {
-        y: 100,
+        x: -60,
         opacity: 0,
         duration: 1,
-        stagger: 0.2
+        ease: 'power3.out'
+    })
+    gsap.from(split.lines, {
+        y: 80,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.16,
+        ease: 'power3.out'
     })
 })
 

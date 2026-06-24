@@ -1,6 +1,6 @@
 <template>
-    <div class="absolute w-screen h-full" id="bg-wrapper">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+    <div class="absolute inset-0 h-full w-full overflow-hidden" id="bg-wrapper">
+        <svg class="h-full w-full object-cover" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 1422 800">
             <g stroke-width="1" :stroke="`hsl(${hue}, ${saturation}%, ${lightness}%)`" fill="none" stroke-linecap="butt">
                 <line x1="0" y1="0" x2="54" y2="54" opacity="1.00"></line>

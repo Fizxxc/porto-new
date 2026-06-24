@@ -1,77 +1,84 @@
 <template>
-  <footer id="contact" class="bg-primary text-light-gray min-h-screen px-6 py-16 flex flex-col justify-center items-center relative overflow-hidden">
-    <Bg :hue="0" :saturation="0" :lightness="100" class="opacity-10 absolute inset-0" />
+  <footer id="contact" class="relative min-h-svh overflow-hidden bg-primary text-light-gray">
+    <Bg :hue="0" :saturation="0" :lightness="100" class="pointer-events-none absolute inset-0 opacity-10" />
 
-    <div class="relative z-10 w-full max-w-5xl grid lg:grid-cols-[1fr_1.1fr] gap-8 items-start">
-      <div class="space-y-6">
-        <p class="uppercase tracking-[0.4em] text-sm text-light-gray/60">Get in touch</p>
-        <h1 class="text-5xl lg:text-7xl font-semibold split-f">Contact.</h1>
-        <p class="leading-8 text-light-gray/75">
-          Open for school events, visual operation, documentation, VJ design, motion graphics, and graphic design projects.
-        </p>
+    <div class="section-shell relative z-10 flex min-h-svh flex-col justify-center gap-10 pb-28 md:pb-16">
+      <div class="grid gap-8 xl:grid-cols-[0.9fr_1.1fr] xl:items-stretch">
+        <div class="glass-panel rounded-[2rem] p-5 sm:p-8">
+          <p class="section-kicker text-light-gray/60">Get in touch</p>
+          <h1 class="fluid-title pt-4 font-semibold split-f safe-text">Contact.</h1>
+          <p class="max-w-xl pt-5 leading-8 text-light-gray/75 safe-text">
+            Open for school events, visual operation, documentation, VJ design, motion graphics, and graphic design projects.
+          </p>
 
-        <div class="grid gap-4">
-          <a v-for="contact in contactDetails" :key="contact.label" :href="contact.url" target="_blank"
-             class="rounded-2xl border border-light-gray/20 p-4 bg-white/5 hover:bg-white/10 transition">
-            <p class="text-sm text-light-gray/50">{{ contact.label }}</p>
-            <h2 class="pt-1 font-semibold">{{ contact.value }}</h2>
-          </a>
+          <div class="mt-7 grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+            <a v-for="contact in contactDetails" :key="contact.label" :href="contact.url" target="_blank" rel="noopener noreferrer"
+              class="group flex min-w-0 items-center gap-4 rounded-2xl border border-light-gray/15 bg-white/5 p-4 transition hover:-translate-y-1 hover:bg-white/10">
+              <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-xl text-soft-ivory transition group-hover:bg-soft-ivory group-hover:text-primary">
+                <i :class="contact.icon"></i>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-xs uppercase tracking-[0.2em] text-light-gray/45 safe-text">{{ contact.label }}</span>
+                <span class="block pt-1 font-semibold leading-snug text-light-gray safe-text">{{ contact.value }}</span>
+              </span>
+            </a>
+          </div>
         </div>
+
+        <form @submit.prevent="sendMessage" class="glass-panel rounded-[2rem] p-5 sm:p-8">
+          <div class="flex h-full flex-col gap-5">
+            <div>
+              <p class="text-sm uppercase tracking-[0.25em] text-light-gray/45">Quick Message</p>
+              <h2 class="pt-3 text-2xl sm:text-3xl font-semibold safe-text">Send a message via email</h2>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="space-y-2">
+                <span class="text-sm text-light-gray/60">Name</span>
+                <input v-model="name" type="text" placeholder="Your name" class="contact-input" required />
+              </label>
+              <label class="space-y-2">
+                <span class="text-sm text-light-gray/60">Email</span>
+                <input v-model="email" type="email" placeholder="your@email.com" class="contact-input" required />
+              </label>
+            </div>
+
+            <label class="flex flex-1 flex-col space-y-2">
+              <span class="text-sm text-light-gray/60">Message</span>
+              <textarea v-model="message" placeholder="Tell me about your event or project..." class="contact-input min-h-40 flex-1 resize-none" required></textarea>
+            </label>
+
+            <button type="submit"
+              class="mt-2 inline-flex w-full items-center justify-center gap-3 rounded-2xl bg-soft-ivory px-5 py-4 font-semibold text-primary transition hover:-translate-y-1 hover:bg-white">
+              Send via Email
+              <i class="pi pi-send"></i>
+            </button>
+          </div>
+        </form>
       </div>
 
-      <form
-        @submit.prevent="sendMessage"
-        class="w-full bg-white/5 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-light-gray/20"
-      >
-        <div class="flex flex-col space-y-5">
-          <input
-            v-model="name"
-            type="text"
-            placeholder="name"
-            class="contact-input"
-            required
-          />
-          <input
-            v-model="email"
-            type="email"
-            placeholder="email"
-            class="contact-input"
-            required
-          />
-          <textarea
-            v-model="message"
-            placeholder="message"
-            class="contact-input h-32 resize-none"
-            required
-          ></textarea>
-
-          <button
-            type="submit"
-            class="mt-4 w-full border border-accent text-accent py-3 rounded-xl hover:bg-accent hover:text-white transition-all duration-300 font-medium"
-          >
-            Send via Email
-          </button>
-        </div>
-      </form>
+      <div class="flex flex-col gap-3 text-center text-sm text-light-gray/50 sm:flex-row sm:items-center sm:justify-between sm:text-left">
+        <p>© {{ new Date().getFullYear() }} FizzxVerss. All rights reserved.</p>
+        <p>Hafiz Al Fariz — Visual Communication Design</p>
+      </div>
     </div>
-
-    <p class="relative z-10 mt-12 text-sm text-light-gray/50 text-center">
-      © {{ new Date().getFullYear() }} FizzxVerss. All rights reserved.
-    </p>
   </footer>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import { SplitText } from 'gsap/SplitText';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 import Bg from './util/Bg.vue';
 
+gsap.registerPlugin(ScrollTrigger);
+
 const contactDetails = [
-  { label: 'Phone / WhatsApp', value: '+62 857-7656-8948', url: 'https://wa.me/6285776568948' },
-  { label: 'Email', value: 'fizzx404@gmail.com', url: 'mailto:fizzx404@gmail.com' },
-  { label: 'Instagram', value: '@fizzx.docx', url: 'https://instagram.com/fizzx.docx' },
-  { label: 'Address', value: 'Griyayasa Blok B1/19, Cibitung, Bekasi', url: 'https://www.google.com/maps/search/?api=1&query=Griyayasa%20Blok%20B1%2F19%20Cibitung%20Bekasi' },
+  { label: 'WhatsApp', icon: 'pi pi-whatsapp', value: '+62 857-7656-8948', url: 'https://wa.me/6285776568948' },
+  { label: 'Email', icon: 'pi pi-at', value: 'fizzx404@gmail.com', url: 'mailto:fizzx404@gmail.com' },
+  { label: 'Instagram', icon: 'pi pi-instagram', value: '@fizzx.docx', url: 'https://instagram.com/fizzx.docx' },
+  { label: 'Address', icon: 'pi pi-map-marker', value: 'Griyayasa Blok B1/19, Cibitung, Bekasi', url: 'https://www.google.com/maps/search/?api=1&query=Griyayasa%20Blok%20B1%2F19%20Cibitung%20Bekasi' },
 ]
 
 const name = ref('');
@@ -109,37 +116,23 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.bg-primary {
-  background-color: #0f0f10;
-}
-.text-light-gray {
-  color: #e0e0e0;
-}
-.text-accent {
-  color: #a855f7;
-}
-.border-accent {
-  border-color: #a855f7;
-}
-.hover\:bg-accent:hover {
-  background-color: #a855f7;
-}
 .contact-input {
   width: 100%;
-  background-color: rgba(168, 85, 247, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #e0e0e0;
-  padding: 12px 16px;
-  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
   font-size: 1rem;
   outline: none;
-  transition: all 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 .contact-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.38);
 }
 .contact-input:focus {
-  border-color: #a855f7;
-  box-shadow: 0 0 10px #a855f755;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(234, 228, 213, 0.75);
+  box-shadow: 0 0 0 4px rgba(234, 228, 213, 0.12);
 }
 </style>
